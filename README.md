@@ -51,6 +51,17 @@
     3. JDBC的一些配置 需要在src/util/DBUtils.java里边改(url,username,password)
     4. JDBC jar包在jar文件夹里
 
+## 停车场管理系统
+
+    位置：Java/PARK_SYSTEM
+
+    前端（Vue）：Java/PARK_SYSTEM/CLIENT
+
+    后端（SpringBoot）：Java/PARK_SYSTEM/SERVER
+
+    技术栈：SpringBoot,SpringDataJPA,maven,SpringMVC,Vue,MySQL
+
+    说明：用户管理，车位管理，停车卡管理，入场出场管理等
 
 
 

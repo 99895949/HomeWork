@@ -1,0 +1,6 @@
+com\lx\dao\IBookDao.class
+com\lx\domain\Book.class
+com\lx\service\AdminService.class
+com\lx\domain\Admin.class
+com\lx\controller\AdminController.class
+com\lx\dao\IAdminDao.class
