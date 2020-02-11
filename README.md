@@ -63,7 +63,15 @@
 
     说明：用户管理，车位管理，停车卡管理，入场出场管理等
 
+## 图书管理系统（JSP）
 
+    位置：Java/BOOK_SYSTEM
+
+    技术栈：Spring，SpringMVC，JDBCTemplate，MySQL，maven，JSP
+
+    功能：读者管理（增删改查+分页）、图书管理（增删改查+分页），图书类别没写（懒得写了），借阅管理（借书还书，查看删除）
+
+    说明：可以使用mvn jetty:run 执行
 
 
 
