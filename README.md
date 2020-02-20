@@ -79,6 +79,14 @@
 
     说明：可以使用mvn jetty:run 执行
 
+## CMS系统（SSM+layui）
+
+    位置：Java/CMS
+
+    说明：JDK1.8 + Mysql5.5 + Tomcat8
+
+    说明：sql脚本中 我的mysql导入 datetime(0) NULL 报错，我改成了datetime就不报错了
+
 
 
 

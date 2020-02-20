@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2020-02-11 19:35:44
+Date: 2020-02-20 14:49:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,7 +28,7 @@ CREATE TABLE `admin` (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('root', 'root');
+INSERT INTO `admin` VALUES ('root', '123456');
 
 -- ----------------------------
 -- Table structure for book_info
@@ -47,7 +47,9 @@ CREATE TABLE `book_info` (
   `class_id` int(11) DEFAULT NULL,
   `pressmark` int(11) DEFAULT NULL,
   `state` smallint(6) DEFAULT NULL,
-  PRIMARY KEY (`book_id`)
+  PRIMARY KEY (`book_id`),
+  KEY `class_id` (`class_id`),
+  CONSTRAINT `book_info_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class_info` (`class_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -111,21 +113,26 @@ DROP TABLE IF EXISTS `lend_list`;
 CREATE TABLE `lend_list` (
   `sernum` varchar(20) NOT NULL,
   `book_id` varchar(20) NOT NULL,
-  `reader_id` int(11) NOT NULL,
+  `reader_id` varchar(11) NOT NULL,
   `lend_date` date DEFAULT NULL,
   `back_date` date DEFAULT NULL,
-  PRIMARY KEY (`sernum`)
+  PRIMARY KEY (`sernum`),
+  KEY `book_id` (`book_id`),
+  KEY `reader_id` (`reader_id`),
+  CONSTRAINT `lend_list_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `book_info` (`book_id`),
+  CONSTRAINT `lend_list_ibfk_2` FOREIGN KEY (`reader_id`) REFERENCES `reader_info` (`reader_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lend_list
 -- ----------------------------
-INSERT INTO `lend_list` VALUES ('2015040141', '10000006', '1501014101', '2017-06-12', '2017-09-02');
-INSERT INTO `lend_list` VALUES ('2015040142', '50000004', '1501014101', '2017-03-15', '2017-09-03');
-INSERT INTO `lend_list` VALUES ('2015040143', '50000005', '1501014103', '2017-06-15', '2020-02-11');
-INSERT INTO `lend_list` VALUES ('2015040144', '50000010', '1501014104', '2017-06-15', '2020-02-11');
-INSERT INTO `lend_list` VALUES ('2015040145', '10000001', '1501014101', '2017-09-02', '2017-09-02');
-INSERT INTO `lend_list` VALUES ('2015040151', '50000004', '1501014101', '2020-02-11', '2020-02-11');
+INSERT INTO `lend_list` VALUES ('2015040141', '10000006', '123465765', '2017-06-12', '2017-09-02');
+INSERT INTO `lend_list` VALUES ('2015040142', '50000004', '123465765', '2017-03-15', '2017-09-03');
+INSERT INTO `lend_list` VALUES ('2015040143', '50000005', '123465765', '2017-06-15', '2020-02-11');
+INSERT INTO `lend_list` VALUES ('2015040144', '50000010', '123465765', '2017-06-15', '2020-02-11');
+INSERT INTO `lend_list` VALUES ('2015040145', '10000001', '123465765', '2017-09-02', '2017-09-02');
+INSERT INTO `lend_list` VALUES ('2015040151', '50000004', '123465765', '2020-02-11', '2020-02-11');
+INSERT INTO `lend_list` VALUES ('2015040152', '10000001', '123465765', '2020-02-16', '2020-02-16');
 
 -- ----------------------------
 -- Table structure for reader_info
@@ -145,7 +152,8 @@ CREATE TABLE `reader_info` (
 -- ----------------------------
 -- Records of reader_info
 -- ----------------------------
-INSERT INTO `reader_info` VALUES ('1307031011', '小乔', '女', '1996-03-27', '中国香港啊', '666666', '123456');
+INSERT INTO `reader_info` VALUES ('123465765', '夏侯惇', '男', '1998-06-10', '天津市东丽湖', '15711111111', '123456789');
+INSERT INTO `reader_info` VALUES ('1307031011', '小乔', '女', '1996-03-22', '中国香港', '123456789', '123456');
 INSERT INTO `reader_info` VALUES ('1307031022', '大桥', '女', '1998-03-04', '中国台湾', '13546556667', '111111');
 INSERT INTO `reader_info` VALUES ('1307031033', '孙策', '男', '1998-06-10', '天津市东丽湖', '15732136759', '111111');
 INSERT INTO `reader_info` VALUES ('1307031044', '曹操', '男', '2020-02-11', '河南省许昌市', '13698569874', '111111');
@@ -154,6 +162,5 @@ INSERT INTO `reader_info` VALUES ('1501014103', '公孙离', '女', '1995-04-15'
 INSERT INTO `reader_info` VALUES ('1501014104', '成吉思汗', '男', '1996-08-29', '陕西省西安市', '12345678907', '111111');
 INSERT INTO `reader_info` VALUES ('1501014105', '孙尚香', '女', '1996-01-01', '陕西省西安市', '15123659875', '111111');
 INSERT INTO `reader_info` VALUES ('1501014106', '马可波罗', '男', '1996-05-03', '山东省青岛市', '15369874123', '111111');
-INSERT INTO `reader_info` VALUES ('1502035467', '武则天', '女', '1900-02-06', '中国大唐', '15789856584', '111111');
 INSERT INTO `reader_info` VALUES ('1701015408', '夏侯惇', '男', '1966-05-20', '江西南昌', '16845698542', '111111');
 INSERT INTO `reader_info` VALUES ('2172221053', '鲁班七号', '男', '1996-03-26', '河北省唐山市', '15468465665', '111111');
