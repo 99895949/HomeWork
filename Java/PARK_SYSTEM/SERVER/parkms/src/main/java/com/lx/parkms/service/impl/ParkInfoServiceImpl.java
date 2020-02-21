@@ -49,7 +49,7 @@ public class ParkInfoServiceImpl implements ParkInfoService {
         if(carId == null || "".equals(carId)){
             return parkInfoRepository.findAll(pageable);
         }else {
-            return parkInfoRepository.findAllByCarId(carId,pageable);
+            return parkInfoRepository.findAllByCarIdLike("%"+carId+"%",pageable);
         }
     }
 

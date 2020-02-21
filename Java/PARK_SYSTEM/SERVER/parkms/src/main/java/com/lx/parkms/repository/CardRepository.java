@@ -18,4 +18,6 @@ public interface CardRepository extends JpaRepository<Card,String>{
     Card findByUserPhone(String phone);
 
     Page<Card> findAllByUserPhone(String phone, Pageable pageable);
+
+    Page<Card> findAllByUserPhoneLike(String s, Pageable pageable);
 }

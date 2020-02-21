@@ -13,6 +13,8 @@ public interface ParkInfoRepository extends JpaRepository<ParkInfo,String> {
 
     Page<ParkInfo> findAllByCarId(String carId,Pageable pageable);
 
+    Page<ParkInfo> findAllByCarIdLike(String carId,Pageable pageable);
+
     List<ParkInfo> findAllByCardId(String cardId);
 
     List<ParkInfo> findAllByCarId(String carId);

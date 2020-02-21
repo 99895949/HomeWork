@@ -33,7 +33,7 @@ public class CardServiceImpl implements CardService {
         if("".equals(phone) || phone == null){
             return cardRepository.findAll(pageable);
         }
-        return cardRepository.findAllByUserPhone(phone,pageable);
+        return cardRepository.findAllByUserPhoneLike("%"+phone+"%",pageable);
     }
 
     @Override
