@@ -87,6 +87,11 @@
 
     说明：sql脚本中 我的mysql导入 datetime(0) NULL 报错，我改成了datetime就不报错了
 
+## 员工信息管理系统（SpringBoot+SSM+vue）
+
+    位置：Java/EMPLOYEE_SYSTEM
+
+    说明：JDK1.8 + Mysql5.5 + SpringBoot2.x + Mybatis三剑客
 
 
 
