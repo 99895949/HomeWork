@@ -93,6 +93,8 @@
 
     说明：JDK1.8 + Mysql5.5 + SpringBoot2.x + Mybatis三剑客
 
+    功能：部门管理，员工管理，考勤管理，系统管理
+
 
 
 

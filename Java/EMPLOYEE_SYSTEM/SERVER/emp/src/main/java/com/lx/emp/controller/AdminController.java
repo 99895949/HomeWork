@@ -5,10 +5,15 @@ import com.lx.emp.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/admin")
 @CrossOrigin
 public class AdminController {
+
+    @Autowired
+    private HttpServletRequest request;
 
     @Autowired
     private AdminService adminService;
