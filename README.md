@@ -95,6 +95,10 @@
 
     功能：部门管理，员工管理，考勤管理，系统管理
 
+## 廖师兄微信点餐系统
+
+    说明：SpringBoot + MySQL + JPA + Redis + WebSocket
+
 
 
 
