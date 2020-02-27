@@ -3,13 +3,14 @@
     <div class="crumbs">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <i class="el-icon-lx-cascades"></i> 部门管理
+          <i class="el-icon-lx-cascades"></i> 部门汇总
         </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="container">
       <div class="handle-box">
         <el-button
+          v-if="checkPermission(['DEPT_ADD'])"
           type="primary"
           icon="el-icon-plus"
           class="handle-del mr10"
@@ -28,9 +29,10 @@
         <el-table-column prop="deptId" label="部门编号"></el-table-column>
         <el-table-column prop="deptName" label="部门名称"></el-table-column>
         <el-table-column prop="deptCreateTime" label="创建时间"></el-table-column>
-        <el-table-column label="操作" width="180" align="center">
+        <el-table-column label="操作" width="180" align="center" v-if="checkPermission(['DEPT_EDIT','DEPT_DELETE'])">
           <template slot-scope="scope">
               <el-button
+              v-if="checkPermission(['DEPT_EDIT'])"
               @click="toEdit(scope.row)"
               type="primary"
               icon="el-icon-edit"
@@ -38,6 +40,7 @@
               circle
             ></el-button>
             <el-button
+            v-if="checkPermission(['DEPT_DELETE'])"
               @click="removeHandle(scope.row)"
               type="danger"
               icon="el-icon-delete"
@@ -56,7 +59,7 @@
 <script>
 import {getAll,remove} from '@/api/department';
 import DepartmentForm from "@/components/DepartmentForm";
-
+import { checkPermission } from "@/utils/permission";
 export default {
   name: "basetable",
 components: {
@@ -75,6 +78,7 @@ components: {
     this.getData();
   },
   methods: {
+    checkPermission,
     toEdit(row) {
       this.isAdd = false;
       // 这里获取到了子组件，要传值可以直接通过这个指针

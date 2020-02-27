@@ -5,7 +5,7 @@ export function getSessionItem(key) {
 export function checkPermission(value) {
     if (value && value instanceof Array && value.length > 0) {
         const user = getSessionItem("user");
-        const roles = user.roles;
+        const roles = user.permissions;
         const permissionRoles = value;
 
         const hasPermission = roles.some(role => {

@@ -2,11 +2,11 @@
   <div>
     <el-form ref="loginForm" :model="form" :rules="rules" label-width="80px" class="login-box">
       <h3 class="login-title">欢迎登录</h3>
-      <el-form-item label="账号" prop="adminName">
-        <el-input type="text" placeholder="请输入账号" v-model="form.adminName" />
+      <el-form-item label="账号" prop="empNo">
+        <el-input type="text" placeholder="请输入账号" v-model="form.empNo" />
       </el-form-item>
-      <el-form-item label="密码" prop="adminPassword">
-        <el-input type="password" placeholder="请输入密码" v-model="form.adminPassword" />
+      <el-form-item label="密码" prop="empPassword">
+        <el-input type="password" placeholder="请输入密码" v-model="form.empPassword" />
       </el-form-item>
       <el-form-item label="验证码" style="height: 40px;margin-bottom: 20px;">
         <el-input class="input" maxlength="8" v-model="code" placeholder="请输入验证码"></el-input>
@@ -51,16 +51,16 @@ export default {
   data() {
     return {
       form: {
-        adminName: "",
-        adminPassword: ""
+        empNo: "",
+        empPassword: ""
       },
       code:"",
       // 表单验证，需要在 el-form-item 元素中增加 prop 属性
       rules: {
-        adminName: [
+        empNo: [
           { required: true, message: "账号不可为空", trigger: "blur" }
         ],
-        adminPassword: [
+        empPassword: [
           { required: true, message: "密码不可为空", trigger: "blur" }
         ]
       },
@@ -74,8 +74,8 @@ export default {
   methods: {
     reset(formName) {
       this.form = {
-        adminName: "",
-        adminPassword: ""
+        empNo: "",
+        empPassword: ""
       };
       // 清除表单校验的提示
       if (this.$refs[formName]) {
@@ -93,9 +93,12 @@ export default {
           let checkcode = sessionStorage.getItem("code");
           if (that.code.toLowerCase() == checkcode.toLowerCase()) {
             login(that.form).then(data => {
-              console.log(data);
               if (data != null && data != "") {
-                console.log(data);
+                let permissions = data.permissions.map(e=>{
+                  return e.permissionName
+                });
+                console.log(permissions);
+                data.permissions = permissions;
                 sessionStorage.removeItem("user");
                 sessionStorage.setItem("user", JSON.stringify(data));
                 // 使用 vue-router 路由到指定页面，该方式称之为编程式导航

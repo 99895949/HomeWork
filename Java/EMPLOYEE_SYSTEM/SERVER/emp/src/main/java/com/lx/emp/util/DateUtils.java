@@ -13,8 +13,14 @@ public class DateUtils {
         return sdf.format(date);
     }
 
-    public static Date parse(String dateStr,String pattern) throws ParseException {
+    public static Date parse(String dateStr,String pattern)  {
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-        return sdf.parse(dateStr);
+        Date date = null;
+        try {
+            date = sdf.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 }

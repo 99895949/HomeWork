@@ -10,6 +10,7 @@
     <div class="container">
       <div class="handle-box">
         <el-button
+          v-if="checkPermission(['ATTEND_ADD'])"
           type="primary"
           icon="el-icon-plus"
           class="handle-del mr10"
@@ -30,9 +31,10 @@
         <el-table-column prop="empName" label="部门姓名"></el-table-column>
         <el-table-column prop="attendBeginTime" label="上班打卡时间"></el-table-column>
         <el-table-column prop="attendEndTime" label="下班打卡时间"></el-table-column>
-        <el-table-column label="操作" width="180" align="center">
+        <el-table-column label="操作" width="180" align="center" v-if="checkPermission(['ATTEND_EDIT','ATTEND_DELETE'])">
           <template slot-scope="scope">
               <el-button
+              v-if="checkPermission(['ATTEND_EDIT'])"
               @click="toEdit(scope.row)"
               type="primary"
               icon="el-icon-edit"
@@ -40,6 +42,7 @@
               circle
             ></el-button>
             <el-button
+             v-if="checkPermission(['ATTEND_DELETE'])"
               @click="removeHandle(scope.row)"
               type="danger"
               icon="el-icon-delete"
@@ -68,6 +71,7 @@
 <script>
 import {getAll,remove} from '@/api/attend';
 import AttendForm from "@/components/AttendForm";
+import { checkPermission } from "@/utils/permission";
 export default {
   name: "basetable",
   components: {
@@ -91,6 +95,7 @@ export default {
     this.getData();
   },
   methods: {
+    checkPermission,
     toEdit(row) {
       this.isAdd = false;
       // 这里获取到了子组件，要传值可以直接通过这个指针

@@ -31,3 +31,10 @@ export function getAll(query) {
         params: query
     })
 }
+
+export function getByNo(no) {
+    return request({
+        url: "/employee/get/"+ no,
+        method: "get"
+    })
+}

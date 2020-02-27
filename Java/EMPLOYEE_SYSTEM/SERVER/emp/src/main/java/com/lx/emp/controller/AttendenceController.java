@@ -22,18 +22,11 @@ public class AttendenceController {
     private EmployeeService employeeService;
 
     @GetMapping("/list")
-    public PageInfo list(@RequestParam int page,
-                         @RequestParam int size,
-                         @RequestParam(required = false) String name,
-                         @RequestParam(required = false) String no
+    public PageInfo list(@RequestParam(defaultValue = "1") int page,
+                         @RequestParam(defaultValue = "5") int size,
+                         @RequestParam(defaultValue = "") String name,
+                         @RequestParam(defaultValue = "") String no
                          ){
-        if(name == null){
-            name = "";
-        }
-        if(no == null){
-            no = "";
-        }
-
         return attendenceService.findAll(page,size,name,no);
     }
 

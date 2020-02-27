@@ -22,7 +22,7 @@
             <i class="el-icon-caret-bottom"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <a href="https://github.com/lin-xin/vue-manage-system" target="_blank">
+            <a href="/repass" target="_blank">
               <el-dropdown-item>修改密码</el-dropdown-item>
             </a>
             <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
@@ -45,7 +45,7 @@ export default {
   },
   computed: {
     username() {
-      let username = JSON.parse(sessionStorage.getItem("user")).adminName;
+      let username = JSON.parse(sessionStorage.getItem("user")).empName;
       return username ? username : this.name;
     }
   },

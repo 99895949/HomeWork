@@ -3,13 +3,14 @@
     <div class="crumbs">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <i class="el-icon-lx-cascades"></i> 员工管理
+          <i class="el-icon-lx-cascades"></i> 员工汇总
         </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="container">
       <div class="handle-box">
         <el-button
+          v-if="checkPermission(['EMP_ADD'])"
           type="primary"
           icon="el-icon-plus"
           class="handle-del mr10"
@@ -34,14 +35,23 @@
         ref="multipleTable"
         header-cell-class-name="table-header"
       >
-        <el-table-column prop="empNo" label="员工编号"></el-table-column>
-        <el-table-column prop="empName" label="部门姓名"></el-table-column>
-        <el-table-column prop="empGender" label="员工性别"></el-table-column>
-        <el-table-column prop="empEmail" label="员工邮箱"></el-table-column>
-        <el-table-column prop="deptName" label="部门名称"></el-table-column>
-        <el-table-column label="操作" width="180" align="center">
+        <el-table-column prop="empNo" label="编号" width="70"></el-table-column>
+        <el-table-column prop="empName" label="姓名" width="100"></el-table-column>
+        <el-table-column prop="empGender" label="性别" width="50"></el-table-column>
+        <el-table-column prop="empEmail" label="邮箱"></el-table-column>
+        <el-table-column prop="deptName" label="部门" width="100"></el-table-column>
+        <el-table-column prop="empPhone" label="联系电话"></el-table-column>
+        <el-table-column prop="empStatus" label="员工类型">
           <template slot-scope="scope">
+            <span>{{scope.row.empStatus == 1 ? '正式工' :'临时工'}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column v-if="checkPermission(['EMP_EDIT','EMP_DELETE'])" prop="empIdcard" label="身份证号"></el-table-column>
+        <el-table-column v-if="checkPermission(['EMP_EDIT','EMP_DELETE'])" prop="empSalerycard" label="工资卡号"></el-table-column>
+        <el-table-column label="操作" width="180" align="center" v-if="checkPermission(['EMP_EDIT','EMP_DELETE'])">
+          <template slot-scope="scope" >
               <el-button
+              v-if="checkPermission(['EMP_EDIT'])"
               @click="toEdit(scope.row)"
               type="primary"
               icon="el-icon-edit"
@@ -49,6 +59,7 @@
               circle
             ></el-button>
             <el-button
+             v-if="checkPermission(['EMP_DELETE'])"
               @click="removeHandle(scope.row)"
               type="danger"
               icon="el-icon-delete"
@@ -78,6 +89,7 @@
 import {getAll,remove} from '@/api/employee';
 import EmployeeForm from "@/components/EmployeeForm";
 import {getAll as getDeptAll} from '@/api/department';
+import { checkPermission } from "@/utils/permission";
 export default {
   name: "basetable",
   components: {
@@ -115,6 +127,7 @@ export default {
     }
   },
   methods: {
+    checkPermission,
     toEdit(row) {
       this.isAdd = false;
       // 这里获取到了子组件，要传值可以直接通过这个指针
@@ -126,6 +139,7 @@ export default {
     toAdd() {
       this.isAdd = true;
       const _this = this.$refs.form;
+      _this.form.empPassword = "000000";
       _this.dialog = true;
     },
     getData() {

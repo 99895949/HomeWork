@@ -36,6 +36,40 @@ export default new Router({
           meta: { title: '考勤管理' }
         },
         {
+          path: '/vacation',
+          component: () => import('@/views/Vacation.vue'),
+          meta: { title: '休假管理' }
+        }, {
+          path: '/myvacation',
+          component: () => import('@/views/MyVacation.vue'),
+          meta: { title: '我的休假' }
+        }, {
+          path: '/vacationprocess',
+          component: () => import('@/views/VacationProcess.vue'),
+          meta: { title: '休假处理' }
+        }, {
+          path: '/role',
+          component: () => import('@/views/Role.vue'),
+          meta: { title: '角色处理' }
+        }, {
+          path: '/permission',
+          component: () => import('@/views/Permission.vue'),
+          meta: { title: '权限分配' }
+        }, {
+          path: '/salery',
+          component: () => import('@/views/Salery.vue'),
+          meta: { title: '工资管理' }
+        }, {
+          path: '/mysalery',
+          component: () => import('@/views/MySalery.vue'),
+          meta: { title: '我的工资' }
+        },
+        {
+          path: '/daka',
+          component: () => import('@/components/Daka.vue'),
+          meta: { title: '打卡' }
+        },
+        {
           path: '/404',
           component: () => import('@/components/page/404.vue'),
           meta: { title: '404' }

@@ -16,6 +16,11 @@ public class EmployeeService {
     @Autowired
     private EmployeeMapper employeeMapper;
 
+    public boolean changePassword(String no,String password){
+        return employeeMapper.changePassword(no,password) > 1;
+    }
+
+
     public boolean save(Employee employee){
         return employeeMapper.insertSelective(employee) > 0;
     }
