@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2020-02-27 20:08:12
+Date: 2020-02-28 11:26:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,7 +28,7 @@ CREATE TABLE `r_role_permission` (
   KEY `permission_id` (`permission_id`),
   CONSTRAINT `r_role_permission_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `tb_role` (`role_id`),
   CONSTRAINT `r_role_permission_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `tb_permission` (`permission_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of r_role_permission
@@ -88,6 +88,44 @@ INSERT INTO `r_role_permission` VALUES ('76', '01', '21');
 INSERT INTO `r_role_permission` VALUES ('77', '01', '22');
 INSERT INTO `r_role_permission` VALUES ('78', '01', '23');
 INSERT INTO `r_role_permission` VALUES ('79', '01', '24');
+INSERT INTO `r_role_permission` VALUES ('80', '01', '25');
+INSERT INTO `r_role_permission` VALUES ('81', '01', '26');
+
+-- ----------------------------
+-- Table structure for sys_logger
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_logger`;
+CREATE TABLE `sys_logger` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录ID',
+  `create_date` datetime NOT NULL COMMENT '创建时间',
+  `request_method` varchar(64) NOT NULL DEFAULT '' COMMENT 'HTTP请求方法类型',
+  `method` varchar(255) NOT NULL DEFAULT '' COMMENT '执行的方法-类全命名.方法',
+  `params` text NOT NULL COMMENT '传入的参数',
+  `host` varchar(64) NOT NULL COMMENT '客户端主机',
+  `address` varchar(255) NOT NULL DEFAULT '' COMMENT 'URL地址',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of sys_logger
+-- ----------------------------
+INSERT INTO `sys_logger` VALUES ('1', '2020-02-28 10:50:41', 'GET', 'com.lx.emp.service.DepartmentService.findAll', '[null]', '0:0:0:0:0:0:0:1', 'http://localhost:9000/emp/department/list');
+INSERT INTO `sys_logger` VALUES ('2', '2020-02-28 11:20:26', 'GET', 'com.lx.emp.service.EmployeeService.findAll', '[1, 5, , , ]', '0:0:0:0:0:0:0:1', 'http://localhost:9000/emp/employee/list');
+INSERT INTO `sys_logger` VALUES ('3', '2020-02-28 11:22:06', 'GET', 'com.lx.emp.service.EmployeeService.findAll', '[1, 5, , , ]', '127.0.0.1', 'http://127.0.0.1:9000/emp/employee/list');
+INSERT INTO `sys_logger` VALUES ('4', '2020-02-28 11:22:06', 'GET', 'com.lx.emp.service.DepartmentService.findAll', '[]', '127.0.0.1', 'http://127.0.0.1:9000/emp/department/list');
+INSERT INTO `sys_logger` VALUES ('6', '2020-02-28 11:23:30', 'POST', 'com.lx.emp.service.EmployeeService.findByNO', '[00000]', '127.0.0.1', 'http://127.0.0.1:9000/emp/employee/login');
+INSERT INTO `sys_logger` VALUES ('7', '2020-02-28 11:23:32', 'POST', 'com.lx.emp.service.PermissionService.findByRoleId', '[01]', '127.0.0.1', 'http://127.0.0.1:9000/emp/employee/login');
+INSERT INTO `sys_logger` VALUES ('8', '2020-02-28 11:23:32', 'POST', 'com.lx.emp.service.PermissionService.findByRoleId', '[01]', '127.0.0.1', 'http://127.0.0.1:9000/emp/employee/login');
+INSERT INTO `sys_logger` VALUES ('9', '2020-02-28 11:23:36', 'GET', 'com.lx.emp.service.EmployeeService.findAll', '[1, 5, , , ]', '127.0.0.1', 'http://127.0.0.1:9000/emp/employee/list');
+INSERT INTO `sys_logger` VALUES ('10', '2020-02-28 11:23:36', 'GET', 'com.lx.emp.service.DepartmentService.findAll', '[]', '127.0.0.1', 'http://127.0.0.1:9000/emp/department/list');
+INSERT INTO `sys_logger` VALUES ('11', '2020-02-28 11:23:37', 'GET', 'com.lx.emp.service.RoleService.findAll', '[]', '127.0.0.1', 'http://127.0.0.1:9000/emp/role/list');
+INSERT INTO `sys_logger` VALUES ('12', '2020-02-28 11:23:38', 'GET', 'com.lx.emp.service.DepartmentService.findAll', '[]', '127.0.0.1', 'http://127.0.0.1:9000/emp/department/list');
+INSERT INTO `sys_logger` VALUES ('13', '2020-02-28 11:23:48', 'GET', 'com.lx.emp.service.RoleService.findAll', '[]', '127.0.0.1', 'http://127.0.0.1:9000/emp/role/list');
+INSERT INTO `sys_logger` VALUES ('15', '2020-02-28 11:23:56', 'GET', 'com.lx.emp.service.DepartmentService.findAll', '[]', '127.0.0.1', 'http://127.0.0.1:9000/emp/department/list');
+INSERT INTO `sys_logger` VALUES ('16', '2020-02-28 11:23:56', 'GET', 'com.lx.emp.service.RoleService.findAll', '[]', '127.0.0.1', 'http://127.0.0.1:9000/emp/role/list');
+INSERT INTO `sys_logger` VALUES ('17', '2020-02-28 11:23:56', 'GET', 'com.lx.emp.service.VacationService.findAll', '[1, 5, , ]', '127.0.0.1', 'http://127.0.0.1:9000/emp/vacation/list');
+INSERT INTO `sys_logger` VALUES ('18', '2020-02-28 11:23:58', 'GET', 'com.lx.emp.service.SaleryService.findAll', '[1, 5, , ]', '127.0.0.1', 'http://127.0.0.1:9000/emp/salery/list');
+INSERT INTO `sys_logger` VALUES ('19', '2020-02-28 11:23:59', 'GET', 'com.lx.emp.service.SaleryService.findAll', '[1, 5, , 00000]', '127.0.0.1', 'http://127.0.0.1:9000/emp/salery/list');
 
 -- ----------------------------
 -- Table structure for tb_admin
@@ -178,7 +216,7 @@ CREATE TABLE `tb_emp` (
   KEY `emp_type` (`emp_type`),
   CONSTRAINT `tb_emp_ibfk_1` FOREIGN KEY (`dept_id`) REFERENCES `tb_dept` (`dept_id`),
   CONSTRAINT `tb_emp_ibfk_2` FOREIGN KEY (`emp_type`) REFERENCES `tb_role` (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=171 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of tb_emp
@@ -209,7 +247,7 @@ CREATE TABLE `tb_permission` (
   `permission_name` varchar(255) DEFAULT NULL,
   `permission_description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`permission_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of tb_permission
@@ -238,6 +276,8 @@ INSERT INTO `tb_permission` VALUES ('21', 'ROLE_ADD', '增加角色');
 INSERT INTO `tb_permission` VALUES ('22', 'ROLE_EDIT', '编辑角色');
 INSERT INTO `tb_permission` VALUES ('23', 'ROLE_DELETE', '删除角色');
 INSERT INTO `tb_permission` VALUES ('24', 'ROLE_SELECT', '查询角色');
+INSERT INTO `tb_permission` VALUES ('25', 'LOG_SELECT', '查询日志');
+INSERT INTO `tb_permission` VALUES ('26', 'LOG_DELETE', '删除日志');
 
 -- ----------------------------
 -- Table structure for tb_role
@@ -257,7 +297,7 @@ INSERT INTO `tb_role` VALUES ('01', '超级管理员', '啥都能干');
 INSERT INTO `tb_role` VALUES ('02', '总经理', '除了工资管理都可以干');
 INSERT INTO `tb_role` VALUES ('03', '部门经理', '除了部门管理和工资管理都可以干');
 INSERT INTO `tb_role` VALUES ('04', '人事经理', '只有员工管理和工资管理');
-INSERT INTO `tb_role` VALUES ('05', '普通员工', '部门查询、员工查询');
+INSERT INTO `tb_role` VALUES ('05', '普通员工啊', '部门查询、员工查询');
 
 -- ----------------------------
 -- Table structure for tb_salery
@@ -306,7 +346,7 @@ CREATE TABLE `tb_vacation` (
   `status` tinyint(4) DEFAULT NULL COMMENT '0-已申请，1-已批准，2-被驳回，-1自己撤回',
   `remark` varchar(128) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`vacation_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of tb_vacation
@@ -323,3 +363,4 @@ INSERT INTO `tb_vacation` VALUES ('10', '00014', '王昭君', '2020-02-07', '202
 INSERT INTO `tb_vacation` VALUES ('11', '00012', '上官婉儿', '2020-02-01', '2020-02-22', '656', null, null, '0', null);
 INSERT INTO `tb_vacation` VALUES ('12', '00012', '上官婉儿', '2020-02-07', '2020-02-21', '43432', '后羿', '00002', '1', null);
 INSERT INTO `tb_vacation` VALUES ('13', '00004', '张飞', '2020-02-01', '2020-02-29', '两节课加快了', null, null, '0', null);
+INSERT INTO `tb_vacation` VALUES ('14', '00001', '鲁班七号', '2020-02-26', '2020-02-29', '想回家看看', null, null, '0', null);

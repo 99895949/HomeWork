@@ -85,7 +85,7 @@ export default {
               title: "角色管理",
               role: true
             },
-             {
+            {
               icon: "el-icon-bell",
               index: "permission",
               title: "权限分配",
@@ -153,7 +153,8 @@ export default {
               role: true
             }
           ]
-        },{
+        },
+        {
           icon: "el-icon-lock",
           index: "salery",
           title: "工资管理",
@@ -162,11 +163,7 @@ export default {
             {
               index: "salery",
               title: "工资汇总",
-              role: checkPermission([
-                "PAY_ADD",
-                "PAY_EDIT",
-                "PAY_DELETE"
-              ])
+              role: checkPermission(["PAY_ADD", "PAY_EDIT", "PAY_DELETE"])
             },
             {
               index: "mysalery",
@@ -174,6 +171,12 @@ export default {
               role: true
             }
           ]
+        },
+        {
+          icon: "el-icon-s-tools",
+          index: "log",
+          title: "日志汇总",
+          role: checkPermission(["LOG_DELETE", "LOG_SELECT"])
         },
         {
           icon: "el-icon-message",

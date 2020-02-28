@@ -39,7 +39,7 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="tb_salery" domainObjectName="Salery" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+        <table tableName="sys_logger" domainObjectName="SysLogger" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
         <!--<table tableName="tb_permission" domainObjectName="Permission" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>-->
         <!--<table tableName="tb_dept" domainObjectName="Department" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>-->
         <!--<table tableName="tb_attend" domainObjectName="Attendence" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>-->

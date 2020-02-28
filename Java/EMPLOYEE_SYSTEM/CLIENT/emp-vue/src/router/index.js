@@ -63,6 +63,10 @@ export default new Router({
           path: '/mysalery',
           component: () => import('@/views/MySalery.vue'),
           meta: { title: '我的工资' }
+        }, {
+          path: '/log',
+          component: () => import('@/views/Log.vue'),
+          meta: { title: '日志汇总' }
         },
         {
           path: '/daka',
